@@ -1,0 +1,43 @@
+<div *ngIf="loader; else loadingElse" class="loading-bar">
+  <h1>задачи загружаются…</h1>
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template #loadingElse>
+  <mat-toolbar color="primary">
+    <div *ngIf="tasks.length == 0; else elseBlock">задач в базе нет</div>
+    <ng-template #elseBlock>
+      <span>{{ tasks.length }}</span>
+    </ng-template>
+  </mat-toolbar>
+  <div class="wrapper">
+    <div class="content">
+      <mat-card class="task-add">
+        <form novalidate [formGroup]="form" (submit)="submit()">
+          <mat-form-field>
+            <input matInput type="text" formControlName="task" name="name" #myInp />
+          </mat-form-field>
+          <button mat-raised-button color="primary" class="btn-add" [disabled]="!myInp.value.length > 0">
+            <span *ngIf="tasks.length == 0; else C">создать первую задачу</span>
+            <ng-template #C>
+              <span>создать задачу {{ tasks.length + 1 }}</span>
+            </ng-template>
+          </button>
+        </form>
+      </mat-card>
+
+      <div *ngFor="let task of tasks; let idx = index" class="task-list">
+        <mat-card class="task-item">
+          <button mat-icon-button (click)="deleteTask(idx, task.id)" color="warn">
+            <mat-icon>clear</mat-icon>
+          </button>
+          <p>{{ task.id }}</p>
+          <p>{{ task.name }}</p>
+          <p>{{ task.date | date }}</p>
+          <button mat-icon-button (click)="openDialog(task.name, idx)">
+            <mat-icon>create</mat-icon>
+          </button>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,28 @@
+.loading-bar > *{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  .content {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    .task-list {
+      width: 600px;
+      .task-item {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  .task-add {
+    .btn-add {
+      margin-left: 25px;
+    }
+  }
+}
