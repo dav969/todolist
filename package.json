@@ -14,7 +14,7 @@
     "e2e": "ng e2e",
     "server": "json-server --watch db.json --port 3000",
     "dev": "concurrently --kill-others \"npm run start\" \"npm run server\"",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "ng build --aot"
   },
   "private": true,
   "dependencies": {
